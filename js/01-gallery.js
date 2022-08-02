@@ -2,9 +2,11 @@ import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
 console.log(galleryItems);
+const galleryElements = [];
+const images = document.querySelector('.gallery');
 
-const galleryElements = galleryItems.map(({preview, original, description}) => {
-    return `<div class="gallery__item">
+galleryItems.forEach(({preview, original, description}) => {
+    galleryElements.push(`<div class="gallery__item">
     <a class="gallery__link" href="large-image.jpg">
     <img
       class="gallery__image"
@@ -13,9 +15,24 @@ const galleryElements = galleryItems.map(({preview, original, description}) => {
       alt="${description}"
     />
     </a>
-    </div>`
-}).join('');
+    </div>`)
+});
 
-gallery.insertAdjacentHTML("afterbegin", galleryElements);
+images.insertAdjacentHTML("beforeend", galleryElements.join(''));
 
-
+images.addEventListener('click', event => {
+    event.preventDefault();
+    if (event.target.nodeName === 'IMG') {
+        const instance = basicLightbox.create(`
+        <img src="${event.target.dataset.source}">
+    `);
+    instance.show();
+    }else{
+    return;
+    }
+    //Не робоча функція, запитати//
+    // images.addEventListener('keydown', event => {
+    //     if (event.key === 'Escape');
+    //     return;
+    //   });
+  });
