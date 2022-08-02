@@ -32,7 +32,7 @@ images.addEventListener('click', event => {
     }
     //Не робоча функція, запитати//
     // images.addEventListener('keydown', event => {
-    //     if (event.key === 'Escape');
-    //     return;
+    //     if (String(event.key) === 'Escape');
+    //     instance.close();;
     //   });
   });
