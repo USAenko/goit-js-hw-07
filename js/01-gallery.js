@@ -32,10 +32,9 @@ images.addEventListener('click', event => {
     }else{
     return;
     }
-    //Не робоча функція, запитати//
     images.addEventListener('keydown', event => {
-        if (String(event.key) === 'Escape');
-        console.log(event.key)
-        modal.close(() => console.log('lightbox not visible anymore'))
+        if (event.key === 'Escape'){
+            modal.close(() => console.log('lightbox not visible anymore'))
+        }
       });
   });
