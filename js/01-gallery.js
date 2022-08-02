@@ -20,19 +20,22 @@ galleryItems.forEach(({preview, original, description}) => {
 
 images.insertAdjacentHTML("beforeend", galleryElements.join(''));
 
+let modal = null;
+
 images.addEventListener('click', event => {
     event.preventDefault();
     if (event.target.nodeName === 'IMG') {
-        const instance = basicLightbox.create(`
+        modal = basicLightbox.create(`
         <img src="${event.target.dataset.source}">
     `);
-    instance.show();
+    modal.show();
     }else{
     return;
     }
     //Не робоча функція, запитати//
-    // images.addEventListener('keydown', event => {
-    //     if (String(event.key) === 'Escape');
-    //     instance.close();;
-    //   });
+    images.addEventListener('keydown', event => {
+        if (String(event.key) === 'Escape');
+        console.log(event.key)
+        modal.close(() => console.log('lightbox not visible anymore'))
+      });
   });
